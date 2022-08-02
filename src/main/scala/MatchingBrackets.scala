@@ -1,28 +1,32 @@
 import scala.collection.mutable.Stack
 
-object MatchingBrackets extends App {
+object MatchingBrackets {
   def isPaired(txt: String): Boolean = {
     val expectedStack = Stack[Char]()
-    var response = true
 
-    txt.foreach { c =>
-      if (response) {
-        c match {
-          case '[' => expectedStack push ']'
-          case '{' => expectedStack push '}'
-          case '(' => expectedStack push ')'
-          case c@(']' | '}' | ')') =>
-            response = if (expectedStack.nonEmpty) {
-              expectedStack.pop() == c
-            } else {
-              false
-            }
-          case _ =>
+    val response = txt.forall({
+      case '[' =>
+        expectedStack push ']'
+        true
+      case '{' =>
+        expectedStack push '}'
+        true
+      case '(' =>
+        expectedStack push ')'
+        true
+      case c@(']' | '}' | ')') =>
+        if (expectedStack.nonEmpty) {
+          expectedStack.pop() == c
+        } else {
+          false
         }
-      }
-    }
+      case _ => true
+    })
 
     expectedStack.isEmpty && response
   }
+
+  println(isPaired("{a}([bdbb bdf])"))
+  println(isPaired("[}"))
 }
 

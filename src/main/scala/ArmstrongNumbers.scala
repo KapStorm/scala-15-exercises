@@ -1,4 +1,4 @@
-object ArmstrongNumbers extends App {
+object ArmstrongNumbers {
   def isArmstrongNumber(n: Int): Boolean = {
     n == powAndSum(n / 10, n % 10, sizeOfInt(n))
   }
