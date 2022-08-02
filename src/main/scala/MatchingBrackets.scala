@@ -25,8 +25,5 @@ object MatchingBrackets {
 
     expectedStack.isEmpty && response
   }
-
-  println(isPaired("{a}([bdbb bdf])"))
-  println(isPaired("[}"))
 }
 
